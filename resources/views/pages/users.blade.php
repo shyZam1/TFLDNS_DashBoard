@@ -16,35 +16,38 @@
 
 </div>
 
-<!-- /.row -->
-<table class="table table-borderless" id="tbUser">
-        <thead>
-            <tr>
-                <th class="text-center">#</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Password</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        @foreach($data as $item)
-        <tr class="item{{$item->id}}">
-            <td>{{$item->id}}</td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->email}}</td>
-            <td>{{$item->password}}</td>
-            <td><button class="edit-modal btn btn-info"
+{{ csrf_field() }}
+<div class="table-responsive text-center">
+    <!-- /.row -->
+    <table class="table table-borderless" id="tbUser">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            @foreach($data as $item)
+            <tr class="item{{$item->id}}">
+                <td>{{$item->id}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->email}}</td>
+                <td>{{$item->password}}</td>
+                <td><button class="edit-modal btn btn-info"
+                        data-info="{{$item->id}},{{$item->name}},{{$item->email}},{{$item->role}},{{$item->password}}">
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </button>
+                    <button class="delete-modal btn btn-danger"
                     data-info="{{$item->id}},{{$item->name}},{{$item->email}},{{$item->role}},{{$item->password}}">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </button>
-                <button class="delete-modal btn btn-danger"
-                data-info="{{$item->id}},{{$item->name}},{{$item->email}},{{$item->role}},{{$item->password}}">
-                    <span class="glyphicon glyphicon-trash"></span> Delete
-                </button>
-            </td>
-        </tr>
-        @endforeach
-</table>
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </button>
+                </td>
+            </tr>
+            @endforeach
+    </table>
+</div>
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
