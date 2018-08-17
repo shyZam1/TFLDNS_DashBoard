@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\DB;
 class PagesController extends Controller
 {
      /**
@@ -36,9 +37,14 @@ class PagesController extends Controller
     }
     public function users (Request $request){
         $request->user()->authorizeRoles('admin');
-        $data = User::select('id','name','email','password')->get();
-        $results = Role::select('name')->get();
-        return view('pages.users')->withData($data,$results);
+        // $data = User::select('id','name','email','password')->get();
+        // $results = Role::select('name')->get();
+        $data = DB::table('users')
+                
+                ->leftJoin('role_user','users.id', '=','role_user.user_id')
+                ->leftJoin('roles','role_user.role_id','=','roles.id')
+                ->select('users.id', 'users.name' , 'users.email','roles.name as role', 'users.password')->get();
+        return view('pages.users')->withData($data);
     }
 
     public function support (Request $request){
@@ -46,5 +52,34 @@ class PagesController extends Controller
         return view('pages.support');
     }
 
+    /* public function editUser (Request $request) {
+
+        $rules = array (
+                'name' => 'required|alpha',
+                'email' => 'required|email',
+                'password' => 'required'
+            
+        );
+        $validator = Validator::make ( Input::all (), $rules );
+        if ($validator->fails ())
+            return Response::json ( array (
+                'errors' => $validator->getMessageBag ()->toArray ()
+            ) );
+        else {
+    
+            $data = User::find ( $request->id );
+            $data->name = ($request->name);
+            $data->email = ($request->email);
+            $data->password = ($request->password);
+            $data->save ();
+            return response ()->json ( $data );
+        }
+    } 
+
+   public function deleteUser (Request $request) {
+        User::find ( $request->id )->delete ();
+        return response ()->json ();
+    }
+ */
 
 }

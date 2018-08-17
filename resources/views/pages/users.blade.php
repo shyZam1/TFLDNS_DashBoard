@@ -25,6 +25,7 @@
                     <th class="text-center">#</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
+                    <th class="text-center">Role</th>
                     <th class="text-center">Password</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -34,6 +35,7 @@
                 <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->email}}</td>
+                <td>{{$item->role}}</td>
                 <td>{{$item->password}}</td>
                 <td><button class="edit-modal btn btn-info"
                         data-info="{{$item->id}},{{$item->name}},{{$item->email}},{{$item->role}},{{$item->password}}">
@@ -91,6 +93,15 @@
                     <p
                         class="password_error error text-center alert alert-danger hidden"></p>
                     
+                    <div class="form-group">
+                            <label class="control-label col-sm-2" for="role">Role:</label>
+                            <div class="col-sm-10">
+                                <input type="name" class="form-control" id="role">
+                            </div>
+                        </div>
+                        <p
+                            class="password_error error text-center alert alert-danger hidden"></p>
+
                 </form>
                 <div class="deleteContent">
                     Are you Sure you want to delete <span class="dname"></span> ? <span
@@ -150,12 +161,13 @@
         $('#myModal').modal('show');
     });
 
-function fillmodalData(details){
-    $('#fid').val(details[0]);
-    $('#name').val(details[1]);
-    $('#email').val(details[2]);
-    $('#password').val(details[3]);
-}
+    function fillmodalData(details){
+        $('#fid').val(details[0]);
+        $('#name').val(details[1]);
+        $('#email').val(details[2]);
+        $('#role').val(details[3]);
+        $('#password').val(details[4]);
+    }
 
     $('.modal-footer').on('click', '.edit', function() {
         $.ajax({
@@ -164,8 +176,9 @@ function fillmodalData(details){
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $("#fid").val(),
-                'name': $('#fame').val(),
+                'name': $('#name').val(),
                 'email': $('#email').val(),
+                'role' : $('#role').val(),
                 'password': $('#password').val(),
             },
             success: function(data) {

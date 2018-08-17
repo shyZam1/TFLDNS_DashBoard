@@ -11,6 +11,11 @@
 |
 */
 
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
+
 /*Route::get('/', function () {
     return view('welcome');
 }); */
@@ -27,30 +32,40 @@ Route::get('/index','PagesController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');*/
 
-Route::post('/editItem', function (Request $request) {
+/*Route::post('/editItem','PagesController@editUser');
+Route::post('/deleteItem', 'PagesController@deleteItem'); */
 
-	$rules = array (
-			'name' => 'required|alpha',
-			'email' => 'required|email',
-			'password' => 'required'
-		
-	);
-	$validator = Validator::make ( Input::all (), $rules );
-	if ($validator->fails ())
-		return Response::json ( array (
-		    'errors' => $validator->getMessageBag ()->toArray ()
-		) );
-	else {
+Route::post ( '/editItem', function (Request $request) {
+    $rules = array (
+        'name' => 'required|alpha',
+        'email' => 'required|email',
+        'password' => 'required'
+        
+    );
+    $validator = Validator::make ( Input::all (), $rules );
+    if ($validator->fails ())
+        return Response::json ( array (
+            'errors' => $validator->getMessageBag ()->toArray ()
+        ) );
+    else {
 
-		$data = User::find ( $request->id );
-		$data->name = ($request->name);
-		$data->email = ($request->email);
-		$data->password = ($request->password);
-		$data->save ();
-		return response ()->json ( $data );
-	}
+        $data = User::find( $request->id );
+        $data->name = ($request->name);
+        $data->email = ($request->email);
+        $data->password = ($request->password);
+        // $data->role = ;
+        // Hash::make($data->password);
+        $data->save ();
+        // $data = DB::table('users')  
+                
+        //         ->where('users.id',$data->id)              
+        //         ->update(['users.name'=> $data->name ],[ 'users.email' => $data->email],['users.password'=> Hash::make($data->password)])->put();
+        // $data->save();
+        return response ()->json ( $data );
+    }
 } );
-Route::post('/deleteItem', function (Request $request) {
+
+Route::post ( '/deleteItem', function (Request $request) {
 	User::find ( $request->id )->delete ();
 	return response ()->json ();
 } );
