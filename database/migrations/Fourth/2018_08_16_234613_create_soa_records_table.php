@@ -14,7 +14,7 @@ class CreateSoaRecordsTable extends Migration
     public function up()
     {
         Schema::create('soa_records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('SOA_ID');
             $table->string('origin');
             $table->string('admin_email');
             $table->integer('serial_num');
@@ -22,7 +22,16 @@ class CreateSoaRecordsTable extends Migration
             $table->integer('retry_interval');
             $table->integer('expiry_interval');
             $table->integer('negative_ttl');
+             //define foreign key
+            $table->integer('ZoneDetails_ID')->unsigned();
+            
 
+        });
+
+        Schema::table('soa_records', function (Blueprint $table){
+            $table->foreign('ZoneDetails_ID')
+            ->references('ZoneDetails_ID')->on('zone_details')
+            ->onDelete('cascade');
         });
     }
 

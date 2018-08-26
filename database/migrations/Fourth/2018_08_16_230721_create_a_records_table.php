@@ -14,8 +14,17 @@ class CreateARecordsTable extends Migration
     public function up()
     {
         Schema::create('a_records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('A_ID');
             $table->ipAddress('value');
+            //define foreign key
+            $table->integer('ZoneDetails_ID')->unsigned();
+            
+        });
+
+        Schema::table('a_records', function (Blueprint $table){
+            $table->foreign('ZoneDetails_ID')
+            ->references('ZoneDetails_ID')->on('zone_details')
+            ->onDelete('cascade');
         });
     }
 

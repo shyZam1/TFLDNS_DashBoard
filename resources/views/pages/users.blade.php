@@ -96,7 +96,12 @@
                     <div class="form-group">
                             <label class="control-label col-sm-2" for="role">Role:</label>
                             <div class="col-sm-10">
-                                <input type="name" class="form-control" id="role">
+                                <select class="form-control" id="role" name="role">
+									<option value="" disabled selected>Choose your option</option>
+									<option value="Admin">Admin</option>
+                                    <option value="ISP">ISP Engineer</option>
+                                    <option value="CSR">Customer Service Representative</option>
+								</select>
                             </div>
                         </div>
                         <p
@@ -227,7 +232,6 @@
 
 
 <!-- JQuery Datatable -->
-
 
 
 @endsection

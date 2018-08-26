@@ -14,8 +14,15 @@ class CreateZoneListsTable extends Migration
     public function up()
     {
         Schema::create('zone_lists', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('Zone_ID');
             $table->string('subdomain');
+            $table->integer('TopDomain_ID')->unsigned();
+        });
+
+        Schema::table('zone_lists', function (Blueprint $table){
+            $table->foreign('TopDomain_ID')
+            ->references('TopDomain_ID')->on('tld_lists')
+            ->onDelete('cascade');
         });
     }
 

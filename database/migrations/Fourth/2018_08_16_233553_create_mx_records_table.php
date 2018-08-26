@@ -14,8 +14,17 @@ class CreateMxRecordsTable extends Migration
     public function up()
     {
         Schema::create('mx_records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('MX_ID');
             $table->string('value');
+             //define foreign key
+            $table->integer('ZoneDetails_ID')->unsigned();
+            
+        });
+
+        Schema::table('mx_records', function (Blueprint $table){
+            $table->foreign('ZoneDetails_ID')
+            ->references('ZoneDetails_ID')->on('zone_details')
+            ->onDelete('cascade');
         });
     }
 

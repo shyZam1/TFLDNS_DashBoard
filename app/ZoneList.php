@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ZoneList extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = 'Zone_ID';
 
     /**
      * Get the top level domains for a zone.

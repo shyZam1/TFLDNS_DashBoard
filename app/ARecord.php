@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ARecord extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = 'A_ID';
 
     /**
      * Get the zoneDetails that owns the ARecord.

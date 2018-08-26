@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZoneDetailsTable extends Migration
+class CreateTldListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateZoneDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('zone_details', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::create('tld_lists', function (Blueprint $table) {
+            $table->increments('TopDomain_ID');
+            $table->string('domain');
+           
         });
     }
 
@@ -26,6 +27,6 @@ class CreateZoneDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zone_details');
+        Schema::dropIfExists('tld_lists');
     }
 }

@@ -14,7 +14,7 @@ class CreateNameServersTable extends Migration
     public function up()
     {
         Schema::create('name_servers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('NS_ID');
             $table->string('primary');
             $table->string('secondry');
         });

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PtrRecord extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = 'PTR_ID';
 
      /**
      * Get the zoneDetails that owns the PTRRecord.

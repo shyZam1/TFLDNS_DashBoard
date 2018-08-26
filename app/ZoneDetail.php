@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ZoneDetail extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = 'ZoneDetail_ID';
 
     /**
      * Get the A records for the Zone Details.
