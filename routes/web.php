@@ -28,44 +28,13 @@ Route::get('/users','PagesController@users');
 Route::get('/support','PagesController@support');
 Route::get('/index','PagesController@index');
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+    // Route::resource('products','ProductController');
+});
+
 /*Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');*/
 
-/*Route::post('/editItem','PagesController@editUser');
-Route::post('/deleteItem', 'PagesController@deleteItem'); */
-
-Route::post ( '/editItem', function (Request $request) {
-    $rules = array (
-        'name' => 'required|alpha',
-        'email' => 'required|email',
-        'password' => 'required'
-        
-    );
-    $validator = Validator::make ( Input::all (), $rules );
-    if ($validator->fails ())
-        return Response::json ( array (
-            'errors' => $validator->getMessageBag ()->toArray ()
-        ) );
-    else {
-
-        $data = User::find( $request->id );
-        $data->name = ($request->name);
-        $data->email = ($request->email);
-        $data->password = ($request->password);
-        // $data->role = ;
-        // Hash::make($data->password);
-        $data->save ();
-        // $data = DB::table('users')  
-                
-        //         ->where('users.id',$data->id)              
-        //         ->update(['users.name'=> $data->name ],[ 'users.email' => $data->email],['users.password'=> Hash::make($data->password)])->put();
-        // $data->save();
-        return response ()->json ( $data );
-    }
-} );
-
-Route::post ( '/deleteItem', function (Request $request) {
-	User::find ( $request->id )->delete ();
-	return response ()->json ();
-} );

@@ -32,11 +32,11 @@ class PagesController extends Controller
         return view('welcome');
     }
     public function home (Request $request){
-        $request->user()->authorizeRoles(['admin','ISP','CSR']);
+        // $request->user()->authorizeRoles(['admin','ISP','CSR']);
         return view('pages.home');
     }
     public function users (Request $request){
-        $request->user()->authorizeRoles('admin');
+        // $request->user()->authorizeRoles('admin');
         // $data = User::select('id','name','email','password')->get();
         // $results = Role::select('name')->get();
         $data = DB::table('users')
@@ -48,38 +48,10 @@ class PagesController extends Controller
     }
 
     public function support (Request $request){
-        $request->user()->authorizeRoles('CSR');
+        // $request->user()->authorizeRoles('CSR');
         return view('pages.support');
     }
 
-    /* public function editUser (Request $request) {
-
-        $rules = array (
-                'name' => 'required|alpha',
-                'email' => 'required|email',
-                'password' => 'required'
-            
-        );
-        $validator = Validator::make ( Input::all (), $rules );
-        if ($validator->fails ())
-            return Response::json ( array (
-                'errors' => $validator->getMessageBag ()->toArray ()
-            ) );
-        else {
     
-            $data = User::find ( $request->id );
-            $data->name = ($request->name);
-            $data->email = ($request->email);
-            $data->password = ($request->password);
-            $data->save ();
-            return response ()->json ( $data );
-        }
-    } 
-
-   public function deleteUser (Request $request) {
-        User::find ( $request->id )->delete ();
-        return response ()->json ();
-    }
- */
 
 }

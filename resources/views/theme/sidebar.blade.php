@@ -64,16 +64,19 @@
 
             <li>
 
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> User Management</a>
+                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Administration</a>
 
                 <ul class="nav nav-second-level">
 
-                        <li>
+                        {{-- <li>
     
                                 <a href="{{ url('/users') }}">Create User</a>
     
-                        </li>
-    
+                        </li> --}}
+
+                        <li><a href="{{ route('users.index') }}">Manage Users</a></li>
+                        <li><a  href="{{ route('roles.index') }}">Manage Role</a></li>
+                
                     </ul>
     
                     <!-- /.nav-second-level -->
