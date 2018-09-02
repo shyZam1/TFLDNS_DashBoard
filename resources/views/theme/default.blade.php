@@ -6,6 +6,8 @@
 
     <meta charset="utf-8">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,20 +40,13 @@
 
     <link href="{!! asset('theme/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
 
-    <!-- JQuery Datatable -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/jquery-1.12.3.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
-    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"defer></script>
+    <!-- DataTables CSS -->
+    <link href="{!! asset('theme/vendor/datatables-plugins/dataTables.bootstrap.css')!!}" rel="stylesheet">
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-  
-    {{-- <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
+    <!-- DataTables Responsive CSS -->
+    <link href="{!! asset('theme/vendor/datatables-responsive/dataTables.responsive.css')!!}" rel="stylesheet">
+
+    
     
         
     
@@ -95,38 +90,57 @@
 
 
     <!-- jQuery -->
-
     <script src="{!! asset('theme/vendor/jquery/jquery.min.js') !!}"></script>
 
-
-
     <!-- Bootstrap Core JavaScript -->
-
     <script src="{!! asset('theme/vendor/bootstrap/js/bootstrap.min.js') !!}"></script>
 
-
-
     <!-- Metis Menu Plugin JavaScript -->
-
     <script src="{!! asset('theme/vendor/metisMenu/metisMenu.min.js') !!}"></script>
 
+    <!-- DataTables JavaScript -->
+    <script src="{!! asset('theme/vendor/datatables/js/jquery.dataTables.min.js')!!}"></script>
 
+    <script src="{!! asset('theme/vendor/datatables-plugins/dataTables.bootstrap.min.js')!!}"></script>
+
+    <script src="{!! asset('theme/vendor/datatables-responsive/dataTables.responsive.js')!!}"></script>
 
     <!-- Morris Charts JavaScript -->
-
     <script src="{!! asset('theme/vendor/raphael/raphael.min.js') !!}"></script>
 
     <script src="{!! asset('theme/vendor/morrisjs/morris.min.js') !!}"></script>
 
     <script src="{!! asset('theme/data/morris-data.js') !!}"></script>
 
-
-
     <!-- Custom Theme JavaScript -->
-
     <script src="{!! asset('theme/dist/js/sb-admin-2.js') !!}"></script>
 
-    
+    <script>
+        // $(document).ready(function() {
+        //     $('#dataTables-example').DataTable({
+        //         responsive: true
+        //     });
+        // });
+
+
+        $(document).ready(function() {
+        var table = $('#dataTables-example').DataTable();
+     
+            $('#dataTables-example tbody').on('click', 'tr', function () {
+                var data1 = table.row( this ).data();
+                $('#search').val(data1);
+                $('#pressMe').trigger('click');
+                // $.post( "/query", function( data ) {
+                //     alert( "Data Loaded: " + data );
+                // });
+                //alert( 'You clicked on '+data1[0]+'\'s row' );
+            
+
+            } );
+        } );
+
+
+    </script>
 
 </body>
 

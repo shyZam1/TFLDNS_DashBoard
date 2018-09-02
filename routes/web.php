@@ -22,8 +22,10 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
-//Route::get('/','PagesController@welcome');
 Route::get('/','PagesController@home');
+Route::get('/search','PagesController@search');
+Route::post('/search','PagesController@subDomainQuery');
+Route::post('/query','PagesController@home2');
 Route::get('/users','PagesController@users');
 Route::get('/support','PagesController@support');
 Route::get('/index','PagesController@index');

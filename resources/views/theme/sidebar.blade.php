@@ -58,7 +58,7 @@
 
             <li>
 
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                <a href="{{ url('/search') }}"><i class="fa fa-search fa-fw"></i> Domain Search</a>
 
             </li>
 
