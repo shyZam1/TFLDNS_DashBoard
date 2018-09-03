@@ -20,6 +20,7 @@ class PagesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
     }
 
     /**
@@ -134,41 +135,18 @@ class PagesController extends Controller
     //     return response()->json(compact('html'));
     // }
 
-    public function users (Request $request){
-        // $data = User::select('id','name','email','password')->get();
-        // $results = Role::select('name')->get();
-        $data = DB::table('users')
+    // public function users (Request $request){
+    //     // $data = User::select('id','name','email','password')->get();
+    //     // $results = Role::select('name')->get();
+    //     $data = DB::table('users')
                 
-                ->leftJoin('role_user','users.id', '=','role_user.user_id')
-                ->leftJoin('roles','role_user.role_id','=','roles.id')
-                ->select('users.id', 'users.name' , 'users.email','roles.name as role', 'users.password')->get();
-        return view('pages.users')->withData($data);
-    }
+    //             ->leftJoin('role_user','users.id', '=','role_user.user_id')
+    //             ->leftJoin('roles','role_user.role_id','=','roles.id')
+    //             ->select('users.id', 'users.name' , 'users.email','roles.name as role', 'users.password')->get();
+    //     return view('pages.users')->withData($data);
+    // }
 
-    public function support (Request $request){
-        $ssh = new SSH2('144.120.113.197');
-
-        if (!$ssh->login('arto', 'shitonu81')) {
-            exit('Login Failed');
-        }
-
-        // $output = $ssh->exec('dig ANY +noadditional +noquestion +nocomments +nocmd +nostats computer.telecom.lan');
-        $zonelist = $ssh->exec('cd /etc/bind/zone; cat computer.telecom.lan');
-        $zonelist = json_encode($zonelist,JSON_PRETTY_PRINT);
-        $zonelist = str_replace('"','',$zonelist);
-        $zonelist = str_replace('\t'," ",$zonelist);
-        $zonelist = explode('\n',$zonelist);
-        
-        //  dd($list);
-        
-        //  return view('pages.support',['output'=>$output]);
-        //$output = str_replace('"','',$output);
-        
-        array_pop($zonelist);
-        //echo $output;
-       // $output = $ssh->exec('cd /etc/bind/zone; ls');  
-       return view('pages.support',['zonelist'=>$zonelist]);
-    }
+   
 
     
 

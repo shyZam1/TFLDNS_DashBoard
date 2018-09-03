@@ -26,13 +26,14 @@ Route::get('/','PagesController@home');
 Route::get('/search','PagesController@search');
 Route::post('/search','PagesController@subDomainQuery');
 Route::post('/query','PagesController@home2');
-Route::get('/users','PagesController@users');
-Route::get('/support','PagesController@support');
+// Route::get('/users','PagesController@users');
+
 Route::get('/index','PagesController@index');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
+    Route::get('/support','HomeController@support');
     // Route::resource('products','ProductController');
 });
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -14,7 +15,7 @@ class UserTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Admin';
         $admin->email = 'admin@tfl.com.fj';
-        $admin->password = bcrypty('tfl2018');
+        $admin->password = Hash::make('tfl2018');
         $admin->save();
         
 

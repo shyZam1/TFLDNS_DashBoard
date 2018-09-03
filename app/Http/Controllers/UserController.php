@@ -13,12 +13,10 @@ class UserController extends Controller
 {   
     function __construct()
     {
-         $this->middleware('permission:role-list');
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-
- 
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:list');
+         $this->middleware('permission:create', ['only' => ['create','store']]);
+         $this->middleware('permission:edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
