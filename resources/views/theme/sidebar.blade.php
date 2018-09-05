@@ -40,7 +40,7 @@
 
                     <li>
 
-                        <a href="flot.html">Flot Charts</a>
+                    <a href="{{'/digWeb'}}">Dig Web Interface</a>
 
                     </li>
 

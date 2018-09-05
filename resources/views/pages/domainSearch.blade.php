@@ -9,8 +9,8 @@
                         <div class="panel panel-primary">
                             <div  class="panel-heading">Search Domain Register (.school.fj)</div>
                                 <div class="panel-body">
-                                        <form action="/search" method="POST" role="search">
-                                        </br>
+                                    <form action="/search" method="POST" role="search">
+                                    </br>
                                     </br>
                                         {{ csrf_field() }}
                                         <div style="width:100%;margin-left:auto;margin-right:auto;"class="input-group">
