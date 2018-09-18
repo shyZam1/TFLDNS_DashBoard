@@ -98,10 +98,15 @@ class PagesController extends Controller
         array_pop($list);    
 
         $zonelist = $ssh->exec('cd /etc/bind/zone; cat'." ". $x);
+        //dd($zonelist);
         $zonelist = json_encode($zonelist,JSON_PRETTY_PRINT);
         $zonelist = str_replace('"','',$zonelist);
-        $zonelist = str_replace('\t'," ",$zonelist);
         $zonelist = explode('\n',$zonelist);
+        $zonelist = str_replace('\t',"&nbsp &nbsp &nbsp",$zonelist);
+       //dd($zonelist);
+        
+        
+
         return view('pages.home',['list'=>$list])->with(compact('zonelist'));
 
         dd($x);

@@ -33,6 +33,19 @@ return [
 
     'connections' => [
 
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('MG_HOST', '127.0.0.1'),
+            'port'     => env('MG_PORT', 27017),
+            'database' => env('MG_DATABASE'),
+            'username' => env('MG_USERNAME'),
+            'password' => env('MG_PASSWORD'),
+            // 'options'  => [
+            //     'database' => 'admin' // sets the authentication database required by mongo 3
+            // ]
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
