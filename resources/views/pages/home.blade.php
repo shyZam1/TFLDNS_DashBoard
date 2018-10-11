@@ -22,6 +22,11 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <div>
+                    {{-- <p> This page was opened at {{$time}}</p>
+                    <p> Yesterday's date: {{$yes}}</p>
+                    <p> Date one week ago from today was: {{$lastWeek}}</p> --}}
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover" id ="dataTables-example">
                             <thead>
@@ -105,4 +110,57 @@
 
 
 
+@endsection
+
+@section('scripts')
+{{-- <script src="{!! asset('theme/vendor/jquery/jquery.min.js') !!}"></script> --}}
+<script>
+        // $(document).ready(function() {
+        //     $('#dataTables-example').DataTable({
+        //         responsive: true
+        //     });
+        // });
+
+
+        $(document).ready(function() {
+        var table = $('#dataTables-example').DataTable();
+     
+            $('#dataTables-example tbody').on('click', 'tr', function () {
+                var data1 = table.row( this ).data();
+                $('#search').val(data1);
+                $('#pressMe').trigger('click');
+                // $.post( "/query", function( data ) {
+                //     alert( "Data Loaded: " + data );
+                // });
+                //alert( 'You clicked on '+data1[0]+'\'s row' );
+            
+
+            } );
+        } );
+
+         
+            
+            
+        
+
+        // $('#confirmDelete').on('show.bs.modal', function (e) {
+        //     $message = $(e.relatedTarget).attr('data-message');
+        //     $(this).find('.modal-body p').text($message);
+        //     $title = $(e.relatedTarget).attr('data-title');
+        //     $(this).find('.modal-title').text($title);
+       
+        //     // Pass form reference to modal for submission on yes/ok
+        //     var form = $(e.relatedTarget).closest('form');
+        //     $(this).find('.modal-footer #confirm').data('form', form);
+    
+            
+        // });
+       
+        // // <!-- Form confirm (yes/ok) handler, submits form -->
+    
+        // $('#confirm').find('.modal-footer #confirm').on('click', function(e){
+        //         $(this).data('form').submit();
+        //     });
+
+    </script>
 @endsection

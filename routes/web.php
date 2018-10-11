@@ -28,6 +28,9 @@ Route::post('/search','PagesController@subDomainQuery');
 Route::post('/query','PagesController@home2');
 Route::get('/digWeb','AnalyticsController@digView');
 Route::get('/digWeb','AnalyticsController@dig');
+Route::get('/chartView','AnalyticsController@chartView');
+Route::get('/chartData','AnalyticsController@chartData');
+
 
 Route::get('/index','PagesController@index');
 

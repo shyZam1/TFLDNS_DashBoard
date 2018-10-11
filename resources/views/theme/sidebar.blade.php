@@ -46,7 +46,7 @@
 
                     <li>
 
-                        <a href="morris.html">Morris.js Charts</a>
+                        <a href="{{'/chartView'}}">Morris.js Charts</a>
 
                     </li>
 

@@ -8,6 +8,7 @@ use App\Role;
 use App\ZoneList;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 
 use phpseclib\Net\SSH2;
 class PagesController extends Controller
@@ -56,7 +57,7 @@ class PagesController extends Controller
 
     public function home (){
 
-        $ssh = new SSH2('144.120.113.197');
+        $ssh = new SSH2('144.120.113.196');
 
         if (!$ssh->login('arto', 'shitonu81')) {
             exit('Login Failed');
@@ -74,7 +75,11 @@ class PagesController extends Controller
         $zonelist = str_replace('"','',$zonelist);
         $zonelist = str_replace('\t'," ",$zonelist);
         $zonelist = explode('\n',$zonelist);
-       return view('pages.home',['list'=>$list])->with(compact('zonelist'));
+
+        $today = Carbon::now()->format('d-M-Y');
+        $yesterday = Carbon::yesterday()->format('d-M-Y');
+        $lastWeek = Carbon::now()->addWeeks(-1)->format('d-M-Y');
+       return view('pages.home',['list'=>$list])->with(compact('zonelist'))->with('time',$today)->with('yes',$yesterday)->with('lastWeek',$lastWeek);
     // return view('pages.home',['list'=>$list]);
     }
 
@@ -84,7 +89,7 @@ class PagesController extends Controller
 
        
 
-        $ssh = new SSH2('144.120.113.197');
+        $ssh = new SSH2('144.120.113.196');
 
         if (!$ssh->login('arto', 'shitonu81')) {
             exit('Login Failed');
@@ -105,9 +110,11 @@ class PagesController extends Controller
         $zonelist = str_replace('\t',"&nbsp &nbsp &nbsp",$zonelist);
        //dd($zonelist);
         
-        
+       $today = Carbon::now()->format('d-M-Y');
+       $yesterday = Carbon::yesterday()->format('d-M-Y');
+       $lastWeek = Carbon::now()->addWeeks(-1)->format('d-M-Y');
 
-        return view('pages.home',['list'=>$list])->with(compact('zonelist'));
+        return view('pages.home',['list'=>$list])->with(compact('zonelist'))->with('time',$today)->with('yes',$yesterday)->with('lastWeek',$lastWeek);
 
         dd($x);
     }
