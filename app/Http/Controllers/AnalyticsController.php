@@ -52,6 +52,9 @@ class AnalyticsController extends Controller
         $PTR= DB::connection('mongodb')->collection('demos')->where('query_type','=','PTR')->where('date','>=',$week->format('d-M-Y'))->count();
         $TXT= DB::connection('mongodb')->collection('demos')->where('query_type','=','TXT')->where('date','>=',$week->format('d-M-Y'))->count();
         $MX= DB::connection('mongodb')->collection('demos')->where('query_type','=','MX')->where('date','>=',$week->format('d-M-Y'))->count();
+
+        $primary= DB::connection('mongodb')->collection('demos')->where('url','=','(10.0.2.15)')->where('date','>=',$week->format('d-M-Y'))->count();
+        
        
         return view('analytics.queryChart')->with('user',$user)
                                             ->with('A',$A)
@@ -65,58 +68,17 @@ class AnalyticsController extends Controller
                                             ->with('today',$today)
                                             ->with('day',$day)
                                             ->with('week',$week)
+                                            ->with('primary',$primary)
                                             ->with(compact('data'));
-       
-       
-       
-        // $tld = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->groupBy('source')->count();
-        // dd($tld);
-    //    $data = array();
-    //    for($i = 0; $i <= 1000; $i++){
-    //         $tld = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->groupBy('source')->count();
-    //     //    $dates[$i] = $day->format('d-M-Y');
-    //     //    $numbers[$i] = $totalQueries;
-
-    //     //    $day->addDays(1);    
-    //    }
-
-    //    $data = ['date' => $dates,'number' => $numbers];
-
-       //return response()->json($data);
-
-        // $topdomain = DB::connection('mongodb')->collection('demos')->where('destinatiion;
-
-
-
-        // $data = array();
-        // for($i = 0; $i <= $totalDays; $i++){
-        //     $totalQueries = DB::connection('mongodb')->collection('demos')
-        //                     ->where('date','=',$day->format('d-M-Y'))
-        //                     ->where('source','!=','(ntp.ubuntu.com):')
-        //                     ->count();  
-        //     $data[$i] = [
-        //         $day->format('d-M-Y'),
-        //         $totalQueries
-        //     ];
-        //     $day->addDays(1);    
-        // }
-
-        // dd($data);
-        
     }
-
-    // public function weeklyQueries(){
-    //     $totalQueries = DB::connection('mongodb')->collection('demos')->where('date','=','20-Sep-2018')->count();
-    // }
 
     public function chartData(){
         $today = Carbon::now();/* ->format('d-M-Y') */
         $day = Carbon::now()->addWeeks(-4);/* ->format('d-M-Y') */
         $totalDays = $today->diffInDays($day);
-
+        
         $weeklyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$day->format('d-M-Y'))->count();
       
-       
         $data = array();
         for($i = 0; $i <= $totalDays; $i++){
             $totalQueries = DB::connection('mongodb')->collection('demos')
@@ -135,29 +97,9 @@ class AnalyticsController extends Controller
     }
 
     // public function chartData2(){
-    //     // $today = Carbon::now();/* ->format('d-M-Y') */
-    //     // $day = Carbon::now()->addWeeks(-1);/* ->format('d-M-Y') */
-    //     // $totalDays = $today->diffInDays($day);
-
-    //     // $weeklyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$day->format('d-M-Y'))->count();
-    //    // $tld = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->count();
-    //     dd($tld);
-       
-    //     $data = array();
-    //     for($i = 0; $i <= $totalDays; $i++){
-    //         $totalQueries = DB::connection('mongodb')->collection('demos')
-    //                         //  ->where('date','=',$day->format('d-M-Y'))
-    //                         ->select('client_ip','!=','10.0.0.')
-    //                         ->count();  
-    //         $dates[$i] = $day->format('d-M-Y');
-    //         $numbers[$i] = $totalQueries;
-
-    //         $day->addDays(1);    
-    //     }
-
-    //     $data = ['date' => $dates,'number' => $numbers];
-
-    //     return response()->json($data);
+    //     $week= Carbon::now()->startOfWeek();
+    //     $primary= DB::connection('mongodb')->collection('demos')->where('url','=','10.0.2.15')->where('date','>=',$week->format('d-M-Y'))->count();
+    //     return view('analytics.queryChart')->with('primary',$primary);
     // }
 
     public function dig(){

@@ -100,7 +100,17 @@
                         <div id="container" style="height: 400px"></div>
                     </div>
                 </div>
-        </div>           
+        </div>   
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Weekly Data - Primary DNS (10.0.2.15)
+                </div>
+                <div class="panel-body">
+                    <div id="container1" style="height: 400px"></div>
+                </div>
+            </div>
+    </div>        
     </div>
 
     <div class="row">
@@ -216,6 +226,46 @@
                 ['PTR', PTR_Record],
                 ['TXT', TXT_Record],
                 ['MX', MX_Record]
+            ]
+        }]
+    });
+
+        //var A_Record = {!! json_encode($A) !!}; 
+        let primary = <?php echo $primary; ?>;
+        // let PTR_Record = <?php echo $PTR; ?>;
+        // let TXT_Record = <?php echo $TXT; ?>;
+        // let MX_Record = <?php echo $MX; ?>;
+    
+   
+
+        Highcharts.chart('container1', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Weekly Requests - Primary DNS'
+        },
+        subtitle: {
+            text: 'DNS: 10.0.2.15'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Total Hits ',
+            data:[
+                ['Primary: 10.0.2.15', primary],
+                // ['AAAA', AAAA_Record],
+                // ['PTR', PTR_Record],
+                // ['TXT', TXT_Record],
+                // ['MX', MX_Record]
             ]
         }]
     });
