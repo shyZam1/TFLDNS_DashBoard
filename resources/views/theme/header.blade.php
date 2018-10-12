@@ -13,7 +13,7 @@
     </button>
     <div>
         <a href="{{ url('/') }}">
-            <img src="{{URL::to('/images/telecom-fiji-limited-logo.png')}}" alt="TFL Logo" style="width:70px; height:50px;"></img> 
+            <img src="{{URL::to('/images/telecom-fiji-limited-logo.png')}}" alt="TFL Logo" style="width:30%; margin-left:10px;"></img> 
         </a>
     </div>
    

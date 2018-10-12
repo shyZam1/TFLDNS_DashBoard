@@ -29,8 +29,8 @@ class AnalyticsController extends Controller
     }
 
     public function chartView(){
-        $today = Carbon::now();/* ->format('d-M-Y') */
-        $day = Carbon::now()->addWeeks(-1);/* ->format('d-M-Y') */
+        $today = Carbon::now();
+        $day = Carbon::now()->addWeeks(-1);
         $week= Carbon::now()->startOfWeek();
         $totalDays = $today->diffInDays($day);
 
@@ -140,14 +140,14 @@ class AnalyticsController extends Controller
     //     // $totalDays = $today->diffInDays($day);
 
     //     // $weeklyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$day->format('d-M-Y'))->count();
-    //     $tld = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->count();
+    //    // $tld = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->count();
     //     dd($tld);
        
     //     $data = array();
     //     for($i = 0; $i <= $totalDays; $i++){
     //         $totalQueries = DB::connection('mongodb')->collection('demos')
     //                         //  ->where('date','=',$day->format('d-M-Y'))
-    //                         ->where('source','!=','(ntp.ubuntu.com):')
+    //                         ->select('client_ip','!=','10.0.0.')
     //                         ->count();  
     //         $dates[$i] = $day->format('d-M-Y');
     //         $numbers[$i] = $totalQueries;

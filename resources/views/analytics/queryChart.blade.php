@@ -3,89 +3,87 @@
 
 @section('content')
 
-        
-            
+    <div class="row">
+            <div class="col-lg-12">
+                    <h1 class="page-header">DNS Analytics Dashboard</h1>
+            </div>    
+    </div>  
+    <div class="row" style="margin:10px">
+            <p> <b>System date and time:</b> {{$today}}</p>
+            <p><b> Current Week start:</b> {{$week}}</p>
+            <p><b> System date one week from now:</b> {{$day}}</p>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                <div class="huge">{{$user}}</div>
+                                    <div>Total Number of Queries</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                <div class="huge">{{$dailyQueries}}</div>
+                                    <div>Number of Queries Today</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                <div class="huge">{{$weeklyQueries}}</div>
+                                    <div>Current Weekly Queries</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-bar-chart-o fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div class="huge">{{$monthlyQueries}}</div>
+                                        <div>Queries for the last Month</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>     
+
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">DNS Analytics Dashboard</h1>
-        </div>
-        
-    </div>
-    <p> <b>System date and time:</b> {{$today}}</p>
-    <p><b> Current Week start:</b> {{$week}}</p>
-    <p><b> System date one week from now:</b> {{$day}}</p>
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-bar-chart-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                        <div class="huge">{{$user}}</div>
-                            <div>Total Number of Queries</div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-green">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-bar-chart-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                        <div class="huge">{{$dailyQueries}}</div>
-                            <div>Number of Queries Today</div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-bar-chart-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                        <div class="huge">{{$weeklyQueries}}</div>
-                            <div>Current Weekly Queries</div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-bar-chart-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                        <div class="huge">{{$monthlyQueries}}</div>
-                            <div>Queries for the last Month</div>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Total Number of Queries - 1 week from Today
+                    Total Number of Queries - 4 Weeks Interval
                 </div>
                 <div class="panel-body">
                         <div id="timeseries" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -93,7 +91,7 @@
             </div>
         </div>
         
-        <div class="col-lg-12">
+        <div class="col-lg-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         Query Types
@@ -103,6 +101,70 @@
                     </div>
                 </div>
         </div>           
+    </div>
+
+    <div class="row">
+            <div class="col-lg-12">
+                    <h1 class="page-header">Advanced Analytics - Big Data</h1>
+                </div>
+        <div class="col-lg-12">
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Hue Big Data Server: 144.120.113.195
+                        </div>
+                        <div class="panel-body">
+                            <div id="container">
+                            {{-- <br>
+                            <br>
+                            <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                <img src="{{URL::to('/images/hue logo.png')}}"  style="width:40%" alt="Hue Logo">
+                            </a>
+                            <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                <img src="{{URL::to('/images/hue logo.png')}}"  style="width:40%" alt="Hue Logo">
+                            </a>
+                            <br>
+                            <br>
+                            </div> --}}
+
+                            <div class="col-lg-12" >
+                                <br>
+                                    <table>
+                                        <tr>
+                                            <td  align="center">
+                                                    <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                                        <img src="{{URL::to('/images/hue_search_dashboard.png')}}"  style="width:45%;" alt="Hue Logo">
+                                            </td>
+                                            <td align="center">
+                                                    <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                                        <img src="{{URL::to('/images/hue logo.png')}}"  style="width:45%;" alt="Hue Logo">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center"><h2>Big Data Analytics Dashboard</h2></td>
+                                            <td align="center"><h2>Big Data Query Repository</h2></td>
+                                            
+                                        </tr>
+                                    </table>
+                                </div>
+                                {{-- <div class="col-lg-6">
+                                    <table>
+                                        <tr>
+                                            <td  align="center">
+                                                    <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                                        <img src="{{URL::to('/images/hue_search_dashboard.png')}}"  style="width:45%;" alt="Hue Logo">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td align="center"><h2>Hue Big Data Analytics Dashboard</h2></td>
+                                                
+                                            </tr>
+                                    </table> --}}
+                                </div>
+                        </div>
+                    </div>
+
+        </div>
+
     </div>
 
  
@@ -279,7 +341,7 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: 'Query Set 1 week from now.'
+                    text: 'Query Set for 4 Weeks'
                 },
                 subtitle: {
                     text: document.ontouchstart === undefined ?
