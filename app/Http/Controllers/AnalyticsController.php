@@ -34,28 +34,34 @@ class AnalyticsController extends Controller
         $week= Carbon::now()->startOfWeek();
         $totalDays = $today->diffInDays($day);
 
-        //dd($week);
         $totalDays = $today->diffInDays($day);
         $startmonth = new Carbon('first day of last month');
         
         $endmonth = new Carbon('last day of last month');
         
         $user = DB::connection('mongodb')->collection('demos')->where('source','!=','(ntp.ubuntu.com):')->count();
-        //dd($user);
+
+        //Widgets
         $dailyQueries = DB::connection('mongodb')->collection('demos')->where('date','=',$today->format('d-M-Y'))->where('source','!=','(ntp.ubuntu.com):')->count();
         $weeklyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$week->format('d-M-Y'))->where('source','!=','(ntp.ubuntu.com):')->count();
         $monthlyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$startmonth->format('d-M-Y'))->where('date','<=',$endmonth->format('d-M-Y'))->where('source','!=','(ntp.ubuntu.com):')->count();
-        // dd($monthlyQueries);
-        //dd($dailyQueries);
+       
+        //Query Types
         $A= DB::connection('mongodb')->collection('demos')->where('query_type','=','A')->where('date','>=',$week->format('d-M-Y'))->count();
         $AAAA= DB::connection('mongodb')->collection('demos')->where('query_type','=','AAAA')->where('date','>=',$week->format('d-M-Y'))->count();
         $PTR= DB::connection('mongodb')->collection('demos')->where('query_type','=','PTR')->where('date','>=',$week->format('d-M-Y'))->count();
         $TXT= DB::connection('mongodb')->collection('demos')->where('query_type','=','TXT')->where('date','>=',$week->format('d-M-Y'))->count();
         $MX= DB::connection('mongodb')->collection('demos')->where('query_type','=','MX')->where('date','>=',$week->format('d-M-Y'))->count();
 
+        //Primary DNS
         $primary= DB::connection('mongodb')->collection('demos')->where('url','=','(10.0.2.15)')->where('date','>=',$week->format('d-M-Y'))->count();
-        
-       
+
+        //Zone Files Queries
+        $schoolfj = DB::connection('mongodb')->collection('demos')->where('destination','like', '%'.'.school.fj')->count();
+        $comfj = DB::connection('mongodb')->collection('demos')->where('destination','like', '%'.'.com.fj')->count();
+        $telecomlan = DB::connection('mongodb')->collection('demos')->where('destination','like', '%'.'.telecom.lan')->count();
+        $govfj = DB::connection('mongodb')->collection('demos')->where('destination','like', '%'.'.gov.fj')->count();
+
         return view('analytics.queryChart')->with('user',$user)
                                             ->with('A',$A)
                                             ->with('PTR',$PTR)
@@ -67,16 +73,22 @@ class AnalyticsController extends Controller
                                             ->with('monthlyQueries',$monthlyQueries)
                                             ->with('today',$today)
                                             ->with('day',$day)
-                                            ->with('week',$week)
+                                             ->with('week',$week)
                                             ->with('primary',$primary)
+                                            ->with('startmonth',$startmonth)
+                                            ->with('schoolfj',$schoolfj)
+                                            ->with('comfj',$comfj)
+                                            ->with('telecomlan', $telecomlan )
+                                            ->with('govfj',$govfj)
                                             ->with(compact('data'));
     }
 
     public function chartData(){
-        $today = Carbon::now();/* ->format('d-M-Y') */
-        $day = Carbon::now()->addWeeks(-4);/* ->format('d-M-Y') */
+
+        $today = Carbon::now();
+        $day = Carbon::now()->addWeeks(-4);
         $totalDays = $today->diffInDays($day);
-        
+       
         $weeklyQueries = DB::connection('mongodb')->collection('demos')->where('date','>=',$day->format('d-M-Y'))->count();
       
         $data = array();
@@ -95,12 +107,6 @@ class AnalyticsController extends Controller
 
         return response()->json($data);
     }
-
-    // public function chartData2(){
-    //     $week= Carbon::now()->startOfWeek();
-    //     $primary= DB::connection('mongodb')->collection('demos')->where('url','=','10.0.2.15')->where('date','>=',$week->format('d-M-Y'))->count();
-    //     return view('analytics.queryChart')->with('primary',$primary);
-    // }
 
     public function dig(){
         $ssh = new SSH2('144.120.113.196');

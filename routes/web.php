@@ -31,6 +31,8 @@ Route::get('/digWeb','AnalyticsController@dig');
 Route::get('/chartView','AnalyticsController@chartView');
 Route::get('/chartData','AnalyticsController@chartData');
 
+Route::get('/chartData2','AnalyticsController@chartData2');
+
 
 Route::get('/index','PagesController@index');
 
