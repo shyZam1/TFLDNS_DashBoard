@@ -22,17 +22,15 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
-Route::get('/','PagesController@home');
+// Route::get('/','PagesController@home');
+Route::get('/','AnalyticsController@chartView');
 Route::get('/search','PagesController@search');
 Route::post('/search','PagesController@subDomainQuery');
 Route::post('/query','PagesController@home2');
 Route::get('/digWeb','AnalyticsController@digView');
 Route::get('/digWeb','AnalyticsController@dig');
-Route::get('/chartView','AnalyticsController@chartView');
+Route::get('/zoneVis','PagesController@home');
 Route::get('/chartData','AnalyticsController@chartData');
-
-Route::get('/chartData2','AnalyticsController@chartData2');
-
 
 Route::get('/index','PagesController@index');
 

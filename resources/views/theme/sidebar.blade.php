@@ -7,19 +7,6 @@
             <li class="sidebar-search">
 
                 <div class="input-group custom-search-form">
-
-                    <input type="text" class="form-control" placeholder="Search...">
-
-                    <span class="input-group-btn">
-
-                    <button class="btn btn-default" type="button">
-
-                        <i class="fa fa-search"></i>
-
-                    </button>
-
-                </span>
-
                 </div>
 
                 <!-- /input-group -->
@@ -34,19 +21,51 @@
 
             <li>
 
+                    <a href="#"><i class="fa fa-minus-square  fa-fw"></i> DNS Visibility <span class="fa arrow"></span></a>
+    
+                    <ul class="nav nav-second-level">
+    
+                        <li>
+    
+                                <a href="{{ url('/digWeb') }}"><i class="fa fa-minus-square-o  fa-fw"></i>DNS Web Interface</a>
+    
+                        </li>
+                        <li>
+    
+                                <a href="{{ url('/zoneVis') }}"><i class="fa fa-minus-square-o  fa-fw"></i>Zone Visibility</a>
+    
+                        </li>
+    
+                    </ul>
+    
+                    <!-- /.nav-second-level -->
+    
+                </li>
+
+            <li>
+
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Analytics <span class="fa arrow"></span></a>
 
                 <ul class="nav nav-second-level">
 
                     <li>
 
-                    <a href="{{'/digWeb'}}">Dig Web Interface</a>
+                            <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=50018')}}" target="_blank" title="144.120.113.195:8888/hueSearch">Big Data Portal</a>
 
                     </li>
-
                     <li>
 
-                        <a href="{{'/chartView'}}">Morris.js Charts</a>
+                            <a href="{{url('http://144.120.113.195:8888/hue/home/?uuid=abd814b4-0b45-4c49-9f87-ab02a5ef7327&')}}" target="_blank" title="144.120.113.195:8888/Documents">BD Query Repository</a>
+
+                    </li>
+                    <li>
+
+                            <a href="{{url('http://144.120.113.195:8888/hue/oozie/editor/workflow/edit/?workflow=753')}}" target="_blank" title="144.120.113.195:8888/Oozie">BD Workflow 1</a>
+
+                    </li>
+                    <li>
+
+                            <a href="{{url('http://144.120.113.195:8888/hue/oozie/editor/workflow/edit/?workflow=50019')}}" target="_blank" title="144.120.113.195:8888/Oozie">BD Workflow 2</a>
 
                     </li>
 
@@ -85,31 +104,7 @@
 
             <li>
 
-                <a href="{{ url('/support') }}"><i class="fa fa-wrench fa-fw"></i> Support<span class="fa arrow"></span></a>
-
-            </li>
-
-            <li>
-
-                <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-
-                <ul class="nav nav-second-level">
-
-                    <li>
-
-                        <a href="blank.html">Blank Page</a>
-
-                    </li>
-
-                    <li>
-
-                        <a href="login.html">Login Page</a>
-
-                    </li>
-
-                </ul>
-
-                <!-- /.nav-second-level -->
+                <a href="{{ url('/support') }}"><i class="fa fa-wrench fa-fw"></i> Support</a>
 
             </li>
 

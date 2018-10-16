@@ -344,7 +344,7 @@
 
                 series: [{
                     name: 'Zone File Name',
-                    data:  [govfj,schoolfj,telecomlan,govfj] 
+                    data:  [schoolfj,comfj,telecomlan,govfj] 
 
                 }]
             });
