@@ -41,12 +41,19 @@ use Carbon\Carbon;
  *    Code version: PHP 7.1, Laravel 5.4
  *    Availability: https://justlaravel.com/paginated-data-search-laravel/
  * 
- * * 4. Highcharts API
+ * 5. Highcharts API
  *    Title: Time series data and Donut graph
  *    Author: Highcharts Docs
  *    Date: 6/11/2018
  *    Code version: PHP 7.1, Laravel 5.4
  *    Availability: https://www.highcharts.com/demo
+ * 
+ * 6. SB-Admin Template
+ *    Title: SB-Admin Template - For Laravel 5.4
+ *    Author: Sankhadeep Roy
+ *    Date: 25/3/2015
+ *    Code version: PHP 7.1, Laravel 5.4
+ *    Availability: https://github.com/start-laravel/sb-admin-laravel
 */ 
 
 class AnalyticsController extends Controller
