@@ -57,7 +57,7 @@ class PagesController extends Controller
 
     public function home (){
 
-        $ssh = new SSH2('144.120.113.196');
+        $ssh = new SSH2('144.120.113.197');
 
         if (!$ssh->login('arto', 'shitonu81')) {
             exit('Login Failed');
@@ -89,7 +89,7 @@ class PagesController extends Controller
 
        
 
-        $ssh = new SSH2('144.120.113.196');
+        $ssh = new SSH2('144.120.113.197');
 
         if (!$ssh->login('arto', 'shitonu81')) {
             exit('Login Failed');
@@ -119,44 +119,7 @@ class PagesController extends Controller
         dd($x);
     }
 
-    // public function homeQuery (Request $request){
-
-    //     $query = $request->all();
-
-    //      $ssh = new SSH2('144.120.113.197');
-
-    //     if (!$ssh->login('arto', 'shitonu81')) {
-    //         exit('Login Failed');
-    //     }
-
-    //     //  $output = $ssh->exec('dig SOA +noadditional +noquestion +nocomments +nocmd +nostats +multiline google.com');
-    //     $output = $ssh->exec('cd /etc/bind/zone; ls');      
-    //     $output = json_encode( $output,JSON_PRETTY_PRINT);
-    //     $output = str_replace('"','',$output);
-    //     $list = explode('\n',$output);
-    //     array_pop($list);    
-
-    //     $zonelist = $ssh->exec('cd /etc/bind/zone; cat ' . $query);
-    //     $zonelist = json_encode($zonelist,JSON_PRETTY_PRINT);
-    //     $zonelist = str_replace('"','',$zonelist);
-    //     $zonelist = str_replace('\t'," ",$zonelist);
-    //     $zonelist = explode('\n',$zonelist);
-    //     //return view('pages.table',['list'=>$list])->with(compact('zonelist'));
-    //     $html = view('pages.table', ['list'=>$list])->with(compact('zonelist'))->render();
-
-    //     return response()->json(compact('html'));
-    // }
-
-    // public function users (Request $request){
-    //     // $data = User::select('id','name','email','password')->get();
-    //     // $results = Role::select('name')->get();
-    //     $data = DB::table('users')
-                
-    //             ->leftJoin('role_user','users.id', '=','role_user.user_id')
-    //             ->leftJoin('roles','role_user.role_id','=','roles.id')
-    //             ->select('users.id', 'users.name' , 'users.email','roles.name as role', 'users.password')->get();
-    //     return view('pages.users')->withData($data);
-    // }
+   
 
    
 

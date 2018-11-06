@@ -8,7 +8,46 @@ use Illuminate\Support\Facades\DB;
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Support\Facades\Input;
 use App\Demos;
-use Carbon\Carbon;
+use Carbon\Carbon; 
+
+ /**
+ * References 
+ * -----------------------------------------------------------------------------------'
+ * 1. Carbon 
+ *    Title: Carbon extension for PHP Time
+ *    Author: Carbon Docs
+ *    Date: 6/11/2018
+ *    Code version: 2.5.0, PHP 7.1, Laravel 5.4
+ *    Availability: https://carbon.nesbot.com/docs/
+ * 
+ * 2. Laravel SSH Connections
+ *    Title: SSH
+ *    Author: Laravel Docs
+ *    Date: 6/11/2018
+ *    Code version: PHP 7.1, Laravel 5.4
+ *    Availability: https://laravel.com/docs/4.2/ssh
+ * 
+ * 3. Search Functionality
+ *    Title: Paginated data with Search functionality – laravel
+ *    Author: Avinash Nethala
+ *    Date: 6/6/2016
+ *    Code version: PHP 7.1, Laravel 5.4
+ *    Availability: https://justlaravel.com/paginated-data-search-laravel/
+ * 
+ * 4. User Roles and Permissions
+ *    Title: Easy roles and permissions in Laravel 5.4
+ *    Author: Saqueib Ansari
+ *    Date: 1/6/2017
+ *    Code version: PHP 7.1, Laravel 5.4
+ *    Availability: https://justlaravel.com/paginated-data-search-laravel/
+ * 
+ * * 4. Highcharts API
+ *    Title: Time series data and Donut graph
+ *    Author: Highcharts Docs
+ *    Date: 6/11/2018
+ *    Code version: PHP 7.1, Laravel 5.4
+ *    Availability: https://www.highcharts.com/demo
+*/ 
 
 class AnalyticsController extends Controller
 {   
@@ -20,7 +59,7 @@ class AnalyticsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:view-analytics');
+        $this->middleware('permission:view-analytics');// setting access control here.
     }
 
 
@@ -83,6 +122,7 @@ class AnalyticsController extends Controller
                                             ->with(compact('data'));
     }
 
+    // using carbon to get the date and time
     public function chartData(){
 
         $today = Carbon::now();
@@ -108,22 +148,23 @@ class AnalyticsController extends Controller
         return response()->json($data);
     }
 
+    // using ssh to remotely run commands on dns server
     public function dig(){
-        $ssh = new SSH2('144.120.113.196');
+        $ssh = new SSH2('144.120.113.197');
 
         if (!$ssh->login('arto', 'shitonu81')) {
             exit('Login Failed');
         }
-
+        // give two inputs i.e record type and hostname
         $record = Input::get ( 'recordType' );
 	    $hostname = Input::get ( 'hostname' );
-
+        //This is the command run on the dns server
         $dig = $ssh->exec('dig'." ".$record." ". '+noadditional +noquestion +nocomments +nocmd +nostats'." ". $hostname);
         $dig = json_encode($dig,JSON_PRETTY_PRINT);
         $dig = str_replace('"','',$dig);
         $dig = str_replace('\t'," ",$dig);
         $dig = explode('\n',$dig);
-
+        //returning the results in a view.
         return view('analytics.digWeb',['dig'=>$dig]);
     }
 }

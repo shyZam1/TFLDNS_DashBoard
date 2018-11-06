@@ -16,13 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
-/*Route::get('/', function () {
-    return view('welcome');
-}); */
 
 Auth::routes();
 
-// Route::get('/','PagesController@home');
 Route::get('/','AnalyticsController@chartView');
 Route::get('/search','PagesController@search');
 Route::post('/search','PagesController@subDomainQuery');
@@ -38,10 +34,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::get('/support','HomeController@support');
-    // Route::resource('products','ProductController');
 });
 
-/*Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');*/
 

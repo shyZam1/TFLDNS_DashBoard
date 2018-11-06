@@ -132,7 +132,7 @@
         <div class="col-lg-12">
                 <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Hue Big Data Server: 144.120.113.195
+                            Hue Big Data Server: 144.120.113.193
                         </div>
                         <div class="panel-body">
                             <div id="container">
@@ -141,11 +141,11 @@
                                     <table>
                                         <tr>
                                             <td  align="center">
-                                                    <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                                    <a href="{{url('http://144.120.113.193:8888/hue/search/?collection=50018')}}" target="_blank" title="144.120.113.193:8888/hueDashboard">
                                                         <img src="{{URL::to('/images/hue_search_dashboard.png')}}"  style="width:45%;" alt="Hue Logo">
                                             </td>
                                             <td align="center">
-                                                    <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=667')}}" target="_blank" title="144.120.113.195:8888/hue">
+                                                    <a href="{{url('http://144.120.113.193:8888/hue/home/?uuid=abd814b4-0b45-4c49-9f87-ab02a5ef7327&')}}" target="_blank" title="144.120.113.193:8888/hueRepository">
                                                         <img src="{{URL::to('/images/hue logo.png')}}"  style="width:45%;" alt="Hue Logo">
                                             </td>
                                         </tr>

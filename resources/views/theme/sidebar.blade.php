@@ -50,22 +50,22 @@
 
                     <li>
 
-                            <a href="{{url('http://144.120.113.195:8888/hue/search/?collection=50018')}}" target="_blank" title="144.120.113.195:8888/hueSearch">Big Data Portal</a>
+                            <a href="{{url('http://144.120.113.193:8888/hue/search/?collection=50018')}}" target="_blank" title="144.120.113.193:8888/hueSearch">Big Data Portal</a>
 
                     </li>
                     <li>
 
-                            <a href="{{url('http://144.120.113.195:8888/hue/home/?uuid=abd814b4-0b45-4c49-9f87-ab02a5ef7327&')}}" target="_blank" title="144.120.113.195:8888/Documents">BD Query Repository</a>
+                            <a href="{{url('http://144.120.113.193:8888/hue/home/?uuid=abd814b4-0b45-4c49-9f87-ab02a5ef7327&')}}" target="_blank" title="144.120.113.193:8888/Documents">BD Query Repository</a>
 
                     </li>
                     <li>
 
-                            <a href="{{url('http://144.120.113.195:8888/hue/oozie/editor/workflow/edit/?workflow=753')}}" target="_blank" title="144.120.113.195:8888/Oozie">BD Workflow 1</a>
+                            <a href="{{url('http://144.120.113.193:8888/hue/oozie/editor/workflow/edit/?workflow=753')}}" target="_blank" title="144.120.113.193:8888/Oozie">BD Workflow 1</a>
 
                     </li>
                     <li>
 
-                            <a href="{{url('http://144.120.113.195:8888/hue/oozie/editor/workflow/edit/?workflow=50019')}}" target="_blank" title="144.120.113.195:8888/Oozie">BD Workflow 2</a>
+                            <a href="{{url('http://144.120.113.193:8888/hue/oozie/editor/workflow/edit/?workflow=50019')}}" target="_blank" title="144.120.113.193:8888/Oozie">BD Workflow 2</a>
 
                     </li>
 

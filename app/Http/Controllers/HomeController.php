@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
+    //returns the support page
     public function support (Request $request){
          
        return view('pages.support');
